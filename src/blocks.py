@@ -185,3 +185,11 @@ def heading_to_html_node(block):
     
     children = text_to_children(heading_content)
     return ParentNode(f"h{i}",children)
+
+def extract_title(markdown):
+    lines = markdown.split("\n")
+    for line in lines:
+        if line.startswith("# "):
+            return line[2:].strip()
+    
+    raise ValueError("No h1 header")
