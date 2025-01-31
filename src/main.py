@@ -1,7 +1,13 @@
-from textnode import TextNode, TextType
+from copystatic import copy_static
+
+import os
+import shutil
+
+src_path = "/home/asd98/workspace/github.com/asd9826/staticsitegenerator/static/"
+dest_path = "/home/asd98/workspace/github.com/asd9826/staticsitegenerator/public/"
 
 def main():
-    test_object = TextNode("This is a text node", TextType.BOLD, "https://www.boot.dev")
-    print(test_object)
+    copy_static(src_path,dest_path)
+
 
 main()
