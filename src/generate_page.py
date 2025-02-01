@@ -29,6 +29,28 @@ def generate_page(from_path,template_path,dest_path):
     dest_file.write(template_contents)
     dest_file.close()
 
+def generate_page_recursively(dir_path_content, template_path,dest_dir_path):
+    #Create directories of they do not exist
+    os.makedirs(dest_dir_path,exist_ok=True)
+    #list all the entries in the current path 
+    items = os.listdir(dir_path_content)
+    #loop through each of the entries in the path
+    for item in items:
+        
+        current_content = os.path.join(dir_path_content,item)
+        currest_dest = os.path.join(dest_dir_path,item)
+        
+        if os.path.isfile(current_content):
+            #check if the file is a md file
+            if current_content.endswith(".md"):
+                html_dest = currest_dest.replace(".md",".html")
+                generate_page(current_content,template_path,html_dest)
+
+        else:
+            generate_page_recursively(current_content,template_path,currest_dest)
+
+
+
 
 
 
